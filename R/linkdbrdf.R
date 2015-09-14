@@ -21,7 +21,7 @@ getCpdLinks <- function(fromdb, todb, inference = FALSE, limit = 0, endpoint="ht
                         "?to   rdfs:label ?tolabel . \n",
                         "} ORDER BY ?fromlabel ?tolabel \n",
                  limitC )
-
+  print (sparql_base)
   if(inference) {
     query <- paste( "DEFINE input:inference 'http://reactionontology.org/inference' \n", sparql_base)
   }
