@@ -1,7 +1,7 @@
 #library(SPARQL)
 #library(hash)
 
-getCpdLinks <- function(exfactor, inference = FALSE, limit = 0, endpoint="http://www.genome.jp/sparql/linkdb/"){
+getCpdLinks <- function(fromdb, todb, inference = FALSE, limit = 0, endpoint="http://www.genome.jp/sparql/linkdb/"){
 
   limitC = ""
   if (limit != 0)
@@ -12,14 +12,14 @@ getCpdLinks <- function(exfactor, inference = FALSE, limit = 0, endpoint="http:/
 
   sparql_base <- paste( "BASE <http://www.genome.jp/linkdb/> \n",
                         "SELECT ?fromlabel ?tolabel WHERE { \n",
+                        "?from <equivalent> ?to . \n",
                         "?from <core/database> ?fromdb . \n",
-                        " \n",
-                        "?from <core/database> ?fromdb . \n",
-                        "?from <core/database> ?fromdb . \n",
-                        "?from <core/database> ?fromdb . \n",
-                        "?from <core/database> ?fromdb . \n",
-
-                        "}  \n",
+                        "?to <core/database> ?todb . \n",
+                        "?fromdb <core/dblabel> ", fromdb, ". \n",
+                        "?todb <core/database> ", todb, " . \n",
+                        "?from rdfs:label ?fromlabel . \n",
+                        "?to   rdfs:label ?tolabel . \n",
+                        "} ORDER BY ?fromlabel ?tolabel \n",
                  limitC )
 
   if(inference) {
