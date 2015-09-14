@@ -1,7 +1,7 @@
 #library(SPARQL)
 #library(hash)
 
-getCpdLinks <- function(fromdb, todb, inference = FALSE, limit = 0, endpoint="http://www.genome.jp/sparql/linkdb/"){
+getLinks <- function(fromdb, todb, inference = FALSE, limit = 0, endpoint="http://www.genome.jp/sparql/linkdb/"){
 
   limitC = ""
   if (limit != 0)
