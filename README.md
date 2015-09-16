@@ -22,10 +22,10 @@ chebilinks <- getLinks("compound", "chebi") # this may takes more than 10 second
 nikkajilinks <- getLinks("compound", "nikkaji")
 chembllinks <- getLinks("compound", "chembl")
 
-mergedone <- merge(knapsacklinks, pubchemlinks, by = "fromlabel", all.x = T, all.y = T)
-mergedone <- merge(mergedone, chebilinks, by = "fromlabel", all.x = T, all.y = T)
-mergedone <- merge(mergedone, nikkajilinks, by = "fromlabel", all.x = T, all.y = T)
-mergedone <- merge(mergedone, chembllinks, by = "fromlabel", all.x = T, all.y = T)
+mergedone <- merge(knapsacklinks, pubchemlinks, by = "fromlabel", all = T)
+mergedone <- merge(mergedone, chebilinks, by = "fromlabel", all = T)
+mergedone <- merge(mergedone, nikkajilinks, by = "fromlabel", all = T)
+mergedone <- merge(mergedone, chembllinks, by = "fromlabel", all = T)
 View(mergedone)
 
 cols <- c("kegg", "knapsack", "pubchem", "chebi", "nikkaji", "chembl")
