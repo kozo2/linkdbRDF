@@ -24,7 +24,7 @@ getLinks <- function(fromdb, todb, inference = FALSE, limit = 0, endpoint="http:
                         "?to   rdfs:label ?tolabel . \n",
                         "} ORDER BY ?fromlabel ?tolabel \n",
                  limitC , sep="")
-  print (sparql_base)
+ # print (sparql_base)
   if(inference) {
     query <- paste( "DEFINE input:inference 'http://www.genome.jp/sparql/linkdb/' \n", sparql_base)
   }
