@@ -15,8 +15,10 @@ Examples
 --------
 ```R
 library(linkdbrdf)
-foo <- getLinks("compound", "knapsack")
-bar <- getLinks("compound", "pubchem")
-total <- merge(foo, bar, by = "fromlabel", all.x = T, all.y = T)
+knapsacklinks <- getLinks("compound", "knapsack")
+pubchemlinks <- getLinks("compound", "pubchem")
+chebilinks <- getLinks("comopund", "chebi")
+nikkajilinks <- getLinks("compound", "nikkaji")
+total <- merge(knapsacklinks, pubchemlinks, by = "fromlabel", all.x = T, all.y = T)
 View(total)
 ```
