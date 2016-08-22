@@ -16,11 +16,12 @@ Examples
 ```R
 library(linkdbrdf)
 
-knapsacklinks <- getLinks("compound", "knapsack")
-pubchemlinks <- getLinks("compound", "pubchem") # this may takes more than 10 seconds
-chebilinks <- getLinks("compound", "chebi") # this may takes more than 10 seconds
-nikkajilinks <- getLinks("compound", "nikkaji")
-chembllinks <- getLinks("compound", "chembl")
+knapsack_links <- getLinks("compound", "knapsack")
+pubchem_links <- getLinks("compound", "pubchem") # this may takes more than 10 seconds
+chebi_links <- getLinks("compound", "chebi") # this may takes more than 10 seconds
+nikkaji_links <- getLinks("compound", "nikkaji")
+chembl_links <- getLinks("compound", "chembl")
+hmdb_links <- getLinks("compound", "hmdb")
 
 # aggregate multiple IDs for a KEGG ID
 library(dplyr)
@@ -32,13 +33,14 @@ mygroup <- function(links){
 }
 
 # merge them all
-mergedone <- merge(mygroup(knapsacklinks), mygroup(pubchemlinks), by = "fromlabel", all = T)
-mergedone <- merge(mergedone, mygroup(chebilinks), by = "fromlabel", all = T)
-mergedone <- merge(mergedone, mygroup(nikkajilinks), by = "fromlabel", all = T)
-mergedone <- merge(mergedone, mygroup(chembllinks), by = "fromlabel", all = T)
+mergedone <- merge(mygroup(knapsack_links), mygroup(pubchem_links), by = "fromlabel", all = T)
+mergedone <- merge(mergedone, mygroup(chebi_links), by = "fromlabel", all = T)
+mergedone <- merge(mergedone, mygroup(nikkaji_links), by = "fromlabel", all = T)
+mergedone <- merge(mergedone, mygroup(chembl_links), by = "fromlabel", all = T)
+mergedone <- merge(mergedone, mygroup(hmdb_links), by = "fromlabel", all = T)
 View(mergedone)
 
-cols <- c("kegg", "knapsack", "pubchem", "chebi", "nikkaji", "chembl")
+cols <- c("kegg", "knapsack", "pubchem", "chebi", "nikkaji", "chembl", "hmdb")
 colnames(mergedone) <- cols
 write.csv(mergedone, file="linkdbCpdIDs.csv")
 ```
